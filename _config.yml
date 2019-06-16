@@ -5,9 +5,9 @@ url:            "https://hongminpark.github.io"
 
 # Author
 author:
-  name:         Chester How
-  url:          https://chester.how
-  email:        chesterhow@gmail.com
+  name:         Hongmin Park
+  url:          https://hongminpark.github.io
+  email:        zhdals1026@gmail.com
 
 # Build settings
 markdown:       kramdown
