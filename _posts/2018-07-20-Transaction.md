@@ -14,16 +14,16 @@ _Business Layer_
 
 # 속성/특성
 1) ACID
-- Atomicity(원자성)
+- Atomicity(원자성)<br>
 하나의 transaction 내에 있는 비즈니스 로직들이 모두 정상 처리되어야 transaction 처리가 완료(commit)된다.<br>
 즉 어느 하나의 비즈니스 로직이 정상적으로 처리되지 않는다면 rollback한다.<br>
-- Consistency(정합성)
+- Consistency(정합성)<br>
 transaction이 처리되는 과정에서 모든 로직은 동일한 데이터로 작업해야 한다.<br> 
 (데이터의 정합성 의미)<br>
-- Isolation(독립성)
+- Isolation(독립성)<br>
 여러 transaction은 독립적으로 처리된다. <br>
 병렬적으로 여러 transaction 요청이 있을 때에, 한 transaction 종료 후에 다음 transaction이 진행된다.
-- Durability(영속성)
+- Durability(영속성)<br>
 트랜잭션이 완료(commit)되면 데이터는 그 상태 그대로 유지된다.<br><br>
 
 2) 트랜잭션의 경계
@@ -41,12 +41,12 @@ transaction이 처리되는 과정에서 모든 로직은 동일한 데이터로
 스프링의 Transaction은 PlatformTransactionManager(Interface)를 중심으로 구성되어 있다. PlatformTransactionManager를 구현한 클래스를 사용하여 관리한다.<br>
 또한, 트랜잭션 매니저를 구현하는 방법에는 'Programmatic/Declarative' 두 가지가 있다.<br><br>
 
-[트랜잭션 구현 방법]
-1) 명시적 트랜잭션(Programmatic Transaction)
+#### [트랜잭션 구현 방법]
+###### 1) 명시적 트랜잭션(Programmatic Transaction)
 비즈니스 로직 각각에 직접 트랜잭션 코드를 구현하여 관리하는 방법이다.<br>
-2) 선언적 트랜잭션(Declarative Transaction)
+###### 2) 선언적 트랜잭션(Declarative Transaction)
 AOP/Annotation(@Transactional) 방식 존재<br>
-2-1) AOP방식<br>
+**2-1) AOP방식**<br>
 xml 설정파일에 AOP 설정을 하는 방식. 한 곳에서 Transaction 관리한다.
 {% highlight xml %}
 <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -63,7 +63,7 @@ xml 설정파일에 AOP 설정을 하는 방식. 한 곳에서 Transaction 관�
 </tx:advice>
 {% endhighlight %}
 
-2-2) Annotation방식<br>
+**2-2) Annotation방식**<br>
 - 스프링 트랜잭션매니저를 사용할 클래스/메소드 등 위에 **@Transactional**을 단다.
 {% highlight java %}
 @Transactional
@@ -81,17 +81,17 @@ public class BasicSampleServiceImpl extends HService implements BasicSampleServi
 <br><br>
 
 # 기타
-1) AOP는 트랜잭션(connection)을 한 곳에서 한 번에 관리.
+###### 1) AOP는 트랜잭션(connection)을 한 곳에서 한 번에 관리.<br>
 AOP는 Datasource가 여러 개 있을 경우에, 한 번에 Connection open하고 close한다. <br>
 만약 어떤 Datasource(DB Server)가 물리적으로 먼 곳에 있어서 open/close에 오래 걸리는 경우에 전체 Transaction의 속도에 영향을 주는 문제점이 있다.
 
-2) 2 Phase Commit
+###### 2) 2 Phase Commit
 한 트랜잭션에서 이기종 DB 즉, 물리적으로 다른 DB를 참조하고 있을 때. <br>
 이기종 DB간 커밋할 일이 있을 때를 2 Phase Commit이라고 한다. <br>
 예를 들어 DB1 커밋 -> DB2 조희 -> DB1 커밋 에는 transaction 구현이 복잡해 진다.
 
-3) transaction 장애발생 대표 유형
-3-1) Exception처리 (try/catch문)<br>
+###### 3) transaction 장애발생 대표 유형<br>
+**3-1)** Exception처리 (try/catch문)<br>
 트랜잭션에 roll-back 설정을 할 수 있는데 default는 RuntimeException이다. <br>
 또한, 스프링 트랜잭션은 Checked Exception의 경우는 롤백하지 않는다.<br>
 transaction의 경계는 프레젠테이션 레이어와 비즈니스 레이어 사이. 즉, Service 클래스에서 메소드의 실행과 종료가 transaction의 경계이다.<br>
@@ -99,9 +99,9 @@ transaction의 경계는 프레젠테이션 레이어와 비즈니스 레이어 
 즉, 예외를 잡기 위해 예외처리를 하였는데 transaction이 정상 commit 되는 상황이 발생한다.<br>
 -> 이러한 경우에는 try/catch를 빼거나, 프레젠테이션레이어(Controller) 에서 예외 처리를 해야 한다.<br><br>
 
-3-2) PL(Procedural Language)/SQL 사용 시<br>
-PL/SQL에서 내부적으로 예외 처리를 할 시에도 transaction은 정상적으로 commit되기 때문에 transaction이 처리됨.<br>
-3-3) package 명시 에러<br>
+**3-2)** PL(Procedural Language)/SQL 사용 시<br>
+PL/SQL에서 내부적으로 예외 처리를 할 시에도 transaction은 정상적으로 commit되기 때문에 transaction이 처리됨.<br><br>
+**3-3)** package 명시 에러<br>
 AOP에서 pointcut으로 package를 잘못 등록했을 때
 
  
