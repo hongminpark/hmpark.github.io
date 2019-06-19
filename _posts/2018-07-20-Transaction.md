@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Spring.3-2] Business Layer - Transaction"
+title: "[Spring.4-2] Business Layer - Transaction"
 author: "Hongmin Park"
 ---
 
