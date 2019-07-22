@@ -114,3 +114,26 @@ dict.keys()
 dict.values()
 dict.items()
 ```
+### 이진탐색
+코드를 짜다보면 이진탐색을 해야할 경우가 있다. (이진탐색: 정렬된 리스트에서 아이템 찾기, 빠름)<br>
+매번 이진탐색을 할 수는 없는 노릇이니 파이썬에서 제공하는 bisect를 이용하자. 
+```python
+import bisect
+mylist = [1, 2, 3, 7, 9, 11, 33]
+print(bisect.bisect(mylist, 3))
+```
+
+### inf, infinite number
+```python
+min_val = float('-inf')
+max_val = float('inf')
+```
+
+### 파일 입출력
+파일 close 구문을 작성할 필요 없음, EOF 체크할 필요 없음. (with-as 구문해서 수행)<br>
+소켓/HTTP에도 with-as 구문을 활요할 수 있음.
+```python
+with open('myfile.txt') as file:
+  for line in file.readlines():
+    print(line.strip().split('\t'))
+```
