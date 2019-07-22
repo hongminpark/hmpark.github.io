@@ -13,7 +13,7 @@ author: "Hongmin Park"
 좀 더 자세히는 위의 강의를 참고하자. 무료강의인데다가 글+문제로 된 강의이고 생각보다 아주 고퀄이다. (강추!)<br><br>
 
 ### 몫과 나머지
-`a//b, a%n`
+`a//b, a%n`<br>
 `*divmod(a, b)`
 
 함수와 unpacking을 같이 사용
@@ -22,9 +22,11 @@ author: "Hongmin Park"
 `int(num, base=10)`
 
 ### n칸 기준 정렬
-`string.ljust(n)`
-`string.center(n)`
-`string.rjust(n)`
+```python
+string.ljust(n)
+string.center(n)
+string.rjust(n)
+```
 
 ### string 모듈
 ```python
