@@ -137,3 +137,29 @@ with open('myfile.txt') as file:
   for line in file.readlines():
     print(line.strip().split('\t'))
 ```
+
+### heap
+항상 정렬된 데이터에서 삽입/삭제가 빈번할 경우 heap을 이용할 수 있다.<br>
+python에서는 heap 자료구조를 위해 `heapq`라는 모듈과 `PriorityQueue`라는 클래스를 제공한다.<br>
+모두 minheap으로 구현되어 있어 부모가 자식보다 작은 값을 가진다.<br>
+`heapq`와 `PriorityQueue`는 기능이 조금 다르니 적절하게 사용하도록 하자.(heapq가 연산이 더 빠름)<br>
+#### heapq
+```python
+import heapq
+
+my_list = [13, 2, 1, 5, 10]
+heapq.heapify(my_list) # 힙정렬 예시, [1, 2, 13, 5, 10]
+heapq.heappop(my_list) # 가장 작은 값 제거, 1 return 후 [2, 13, 5, 10]이 됨 
+heapq.heappush(my_list, 1) # heap을 유지한 채 item 넣기,  [1, 2, 13, 5, 10]이 됨 
+```
+#### PriorityQueue
+```python
+from queue import PriorityQueue
+
+my_list = [13, 2, 1, 5, 10]
+pq = PriorityQueue()
+
+for val in my_list:
+    pq.put_nowait(val) # 데이터삽입
+    # pq.get_nowait()    # 가장작은 값 얻기
+```
