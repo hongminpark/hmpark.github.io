@@ -87,3 +87,30 @@ print(answer[3])  # = 3
 print(answer[100]) # = 0
 ```
 
+### dictionary
+dictionary를 다루다보면 key값이 없는 경우에 Exception이 raise되는 경우가 왕왕 있다.<br>
+이 경우에 try로 예외처리를 할 필요 없이, dictionary에서 제공해주는 함수의 기능을 이용해보자.<br>
+
+##### key에 해당하는 value가 없으면 KeyError 아닌 x를 리턴
+```python
+my_dict.get(key, x)
+```
+##### key를 제거하고 key의 value를 리턴. key가 없으면 default를 리턴. default도 설정하지 않았을 경우 raise KeyError 
+```python
+my_dict.pop(key[, default])
+```
+또한, dictionary도 iter할 경우가 많은데, 아래처럼 깔끔하게 iter하도록 하자.
+```python
+for key i my_dict:
+    ~~~~
+
+for key, value in my_dict.items():
+    ~~~~
+    
+if "key" in my_dict:
+    ~~~~
+    
+dict.keys()
+dict.values()
+dict.items()
+```
