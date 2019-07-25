@@ -114,6 +114,11 @@ dict.keys()
 dict.values()
 dict.items()
 ```
+##### dict 의 기본값을 세팅
+```python
+dict.setdefault(key, default)
+```
+
 ### 이진탐색
 코드를 짜다보면 이진탐색을 해야할 경우가 있다. (이진탐색: 정렬된 리스트에서 아이템 찾기, 빠름)<br>
 매번 이진탐색을 할 수는 없는 노릇이니 파이썬에서 제공하는 bisect를 이용하자. 
