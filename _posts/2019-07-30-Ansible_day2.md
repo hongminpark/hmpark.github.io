@@ -27,12 +27,6 @@ become = false
 
 또한, 가능한 모든 설정을 보려면 `ansible-config list config`로 볼 수 있다.
 {% highlight console%}
-[vagrant@controller ~]$ ansible-config view
-[defaults]
-inventory = hosts
-
-[privilege_escalation]
-become = false
 [vagrant@controller ~]$ ansible-config list config
 ACTION_WARNINGS:
   default: true
@@ -79,6 +73,6 @@ ANSIBLE_NOCOWS(default) = False
 ANSIBLE_PIPELINING(default) = False
 ANSIBLE_SSH_ARGS(default) = -C -o ControlMaster=auto -o ControlPersist=60s
 ANSIBLE_SSH_CONTROL_PATH(default) = None
-DEFAULT_BECOME(/home/vagrant/.ansible.cfg) = False
+<span style="color:yellow">DEFAULT_BECOME(/home/vagrant/.ansible.cfg) = False</span>
 {% endhighlight %}
 이 때, 사용자의 cfg파일에 의해 적용된 값은 노란색으로 다르게 표시되는 것을 확인할 수 있다.
