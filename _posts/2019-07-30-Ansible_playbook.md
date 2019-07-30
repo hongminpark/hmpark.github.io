@@ -47,14 +47,38 @@ Ansible은 **Ad-hoc** 방식과 **Playbook** 방식으로 호스트를 제어할
 ##### playbook_ex.yaml
 ```yaml
 ---
-- hosts: host1 # play1
+- name: Deploy Apache Httpd Webserver
+  hosts: host1
+  become: yes
   tasks:
-  - ping:
-      data: abc
-- hosts: host2 # play2
+  - name: Install httpd
+    yum:
+      name: "{{ packages }}"
+      state: present
+    vars:
+      packages:
+        - httpd
+  - name: Copy httpd.conf
+    copy:
+      src: /home/vagrant/httpd.conf
+      dest: /etc/httpd/conf/httpd.conf
+  - name: Start httpd as a systemctl service
+    service:
+      name: httpd
+      state: started
+  - name: Open firewalld
+    firewalld:
+      service: httpd
+      permanent: yes
+      state: enabled
+- name: Deploy Apache Httpd Webserver
+  hosts: host1
+  become: yes
   tasks:
-  - ping:
-      data: def
+  - name: Install httpd
+    yum:
+      name: "{{ packages }}"
+      state: present
 ```
 위와같이 playbook은 여러 play들로 구성되어있고, 각 play는 hosts, task 등의 요소들로 구성되어있다.<br>
 하나의 playbook에 여러 play를 둘 수도 있고, play마다 playbook을 따로 만들 수도 있다.<br>
@@ -93,8 +117,18 @@ The offending line appears to be:
 -  hosts: mgmt
   tasks: # module name
   ^ here
-
 ```
+
+### 3. playbook을 수정한 경우
+playbook을 작성하다 보면 설정이 변경되어 서비스를 재시작해야하는 경우가 있다.<br>
+예를 들어 httpd의 port가 80->8080으로 변경된 경우 service는 재시작해야되지만, <br>
+playbook에는 `state: started`로 설정되어있으므로 playbook을 실행하면 재시작되지 않는다.<br>
+그렇다고 `state: restarted`로 바꾸기에는 매번 수정할 수도 없는 노릇이다.<br>
+
+Ansible은 **Handler**라는 모듈을 통해 이러한 재시작 작업을 지원한다. <br>
+**Handler**는 플레이북 작업 이후 변경사항이 발생한 경우 특정 작업을 *한 번*만 하는 트리거와 같은 역할을 한다. <br>
+주의할 점은 handler는 모든 task가 끝난 이후에 일괄적으로 실행된다는 것이다. <br>
+또한, handler 중 task에 의해 notify 받은 handler들이 playbook에 나열된 순차적으로 실행된다. 
 
 
 
