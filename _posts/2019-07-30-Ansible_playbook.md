@@ -43,5 +43,10 @@ Ansible은 **Ad-hoc** 방식과 **Playbook** 방식으로 호스트를 제어할
 
 이제, Playbook을 통해 호스트를 제어하는 방법을 알아보자.<br><br>
 
+### 1. Playbook 작성하기. 
+플레이북 파일의 위치는 크게 상관없다. 플레이북 파일의 위치보다는, 인벤토리/변수 파일이 제 위치(ansible.cfg 의 상대경로)에 있는 것이 더 중요하다.<br>
+
+### 2. Playbook 실행하기.
+`ansible-playbook [플레이북 파일명]`
 
 
