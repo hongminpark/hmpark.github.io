@@ -47,6 +47,41 @@ Ansible은 **Ad-hoc** 방식과 **Playbook** 방식으로 호스트를 제어할
 플레이북 파일의 위치는 크게 상관없다. 플레이북 파일의 위치보다는, 인벤토리/변수 파일이 제 위치(ansible.cfg 의 상대경로)에 있는 것이 더 중요하다.<br>
 
 ### 2. Playbook 실행하기.
-`ansible-playbook [플레이북 파일명]`
+기본적으로 `ansible-playbook [플레이북 파일명]`로 플레이북을 실행할 수 있다.
+```console
+[vagrant@controller tmp]$ ansible-playbook ping.yaml
+
+PLAY [mgmt] ***************************************************************************
+
+TASK [Gathering Facts] ****************************************************************
+ok: [host2]
+ok: [host1]
+
+TASK [ping] ***************************************************************************
+ok: [host1]
+ok: [host2]
+
+PLAY RECAP ****************************************************************************
+host1                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+host2                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+플레이북의 문법확인이 필요한 경우 `ansible-playbook [플레이북 파일명] --syntax-check`로 문법체크를 수시로 하자.
+```console
+[vagrant@controller tmp]$ ansible-playbook ping.yaml --syntax-check
+ERROR! Syntax Error while loading YAML.
+  did not find expected '-' indicator
+
+The error appears to be in '/tmp/ping.yaml': line 3, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+-  hosts: mgmt
+  tasks: # module name
+  ^ here
+
+```
+
 
 
