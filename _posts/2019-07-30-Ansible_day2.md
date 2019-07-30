@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ansible 사용하기[Day2]"
+title: "Ansible 사용하기[Day2] - "
 author: "Hongmin Park"
 ---
 
