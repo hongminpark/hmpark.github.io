@@ -10,6 +10,8 @@ author: "Hongmin Park"
 Ansible은 **Ad-hoc** 방식과 **Playbook** 방식으로 호스트를 제어할 수 있는데,<br>
 실제로 대부분의 작업은 **Playbook**을 통해 진행된다. **Playbook**은 쉽게말해 **Ad-hoc** 커맨드들을 나열해 놓은 것이라고 생각하면 된다.<br>
 **playbook**은 YAML 형태의 파일인데, yaml 파일 작성법은 매우 쉽게 배울 수 있으니 혹시 yaml 을 모른다면 [잠깐 학습하고 오자!](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)<br>
+playbook 작성 시에는 어떤 값이 key: value이고, 어떤 값이 리스트(-)로 되어야 하는지만 잘 구분하도록 하자.
+
 ### playbook.yaml (sample)
 ``` yaml
 ---
