@@ -75,4 +75,5 @@ ANSIBLE_SSH_ARGS(default) = -C -o ControlMaster=auto -o ControlPersist=60s
 ANSIBLE_SSH_CONTROL_PATH(default) = None
 DEFAULT_BECOME(/home/vagrant/.ansible.cfg) = False
 {% endhighlight %}
-이 때, 사용자의 cfg파일에 의해 적용된 값은 노란색으로 다르게 표시되는 것을 확인할 수 있다.
+이 때, 사용자의 cfg파일에 의해 적용된 값은 노란색으로 다르게 표시되는 것을 확인할 수 있다.<br><br>
+설정파일에 있는 모든 설정을 알 수는 없다.! 그 때 그 때 필요한 설정/관련설정들을 확인하고 빠르게 줍줍하도록 하자.
