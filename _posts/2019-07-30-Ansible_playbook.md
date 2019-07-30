@@ -46,7 +46,7 @@ playbook 작성 시에는 어떤 값이 key: value이고, 어떤 값이 리스�
 
 ### 1. Playbook 작성하기. 
 플레이북 파일의 위치는 크게 상관없다. 플레이북 파일의 위치보다는, 인벤토리/변수 파일이 제 위치(ansible.cfg 의 상대경로)에 있는 것이 더 중요하다.<br>
-##### playbook_ex.yaml
+### playbook_ex.yaml
 ```yaml
 ---
 - name: Deploy Apache Httpd Webserver
