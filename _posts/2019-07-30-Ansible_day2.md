@@ -16,7 +16,7 @@ ansible.cfg (현재 디렉토리의)
 많은 곳에서 설정 가능한데, 헷갈릴 수 있으니 **ANSIBLE_CONFIG**로 설정하는 것이 best라고 생각한다. <br><br>
 
 현재 ansible.cfg의 설정을 확인하려면 `ansible-config view` 로 확인할 수 있다. 
-{% highlight %}
+{% highlight console %}
 [vagrant@controller ~]$ ansible-config view
 [defaults]
 inventory = hosts
@@ -26,7 +26,7 @@ become = false
 {% endhighlight %}
 
 또한, 가능한 모든 설정을 보려면 `ansible-config list config`로 볼 수 있다.
-{% highlight %}
+{% highlight console%}
 [vagrant@controller ~]$ ansible-config view
 [defaults]
 inventory = hosts
@@ -64,7 +64,7 @@ ALLOW_WORLD_READABLE_TMPFILES:
 {% endhighlight %}
 
 `ansible-config dump`을 이용하면, default를 포함하여 현재 적용되어있는 모든 설정을 확인할 수 있다.
-{% highlight %}
+{% highlight console %}
 [vagrant@controller ~]$ ansible-config dump
 ACTION_WARNINGS(default) = True
 AGNOSTIC_BECOME_PROMPT(default) = True
