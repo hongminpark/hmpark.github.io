@@ -38,13 +38,26 @@ Ansible은 **Ad-hoc** 방식과 **Playbook** 방식으로 호스트를 제어할
       service:
         name: httpd
         state: restarted
-
 ```
 
 이제, Playbook을 통해 호스트를 제어하는 방법을 알아보자.<br><br>
 
 ### 1. Playbook 작성하기. 
 플레이북 파일의 위치는 크게 상관없다. 플레이북 파일의 위치보다는, 인벤토리/변수 파일이 제 위치(ansible.cfg 의 상대경로)에 있는 것이 더 중요하다.<br>
+##### playbook_ex.yaml
+```yaml
+---
+- hosts: host1 # play1
+  tasks:
+  - ping:
+      data: abc
+- hosts: host2 # play2
+  tasks:
+  - ping:
+      data: def
+```
+위와같이 playbook은 여러 play들로 구성되어있고, 각 play는 hosts, task 등의 요소들로 구성되어있다.<br>
+하나의 playbook에 여러 play를 둘 수도 있고, play마다 playbook을 따로 만들 수도 있다.<br>
 
 ### 2. Playbook 실행하기.
 기본적으로 `ansible-playbook [플레이북 파일명]`로 플레이북을 실행할 수 있다.
