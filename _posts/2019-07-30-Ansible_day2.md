@@ -73,6 +73,6 @@ ANSIBLE_NOCOWS(default) = False
 ANSIBLE_PIPELINING(default) = False
 ANSIBLE_SSH_ARGS(default) = -C -o ControlMaster=auto -o ControlPersist=60s
 ANSIBLE_SSH_CONTROL_PATH(default) = None
-<span style="color:yellow">DEFAULT_BECOME(/home/vagrant/.ansible.cfg) = False</span>
+\<span style="color:blue"\>DEFAULT_BECOME(/home/vagrant/.ansible.cfg) = False\</span\>
 {% endhighlight %}
 이 때, 사용자의 cfg파일에 의해 적용된 값은 노란색으로 다르게 표시되는 것을 확인할 수 있다.
