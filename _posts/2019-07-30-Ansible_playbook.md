@@ -132,5 +132,26 @@ Ansible은 **Handler**라는 모듈을 통해 이러한 재시작 작업을 지�
 주의할 점은 handler는 모든 task가 끝난 이후에 일괄적으로 실행된다는 것이다. <br>
 또한, handler 중 task에 의해 notify 받은 handler들이 playbook에 나열된 순차적으로 실행된다. 
 
-
+```yaml
+---
+- name: Deploy Apache Httpd Webserver
+  hosts: host1
+  become: yes
+  tasks:
+  - name: Install httpd
+    ...
+  - name: Copy httpd.conf
+    copy:
+      src: /home/vagrant/httpd.conf
+      dest: /etc/httpd/conf/httpd.conf
+    notify:
+    - "Restarting Web Service"
+  - name: Start httpd as a systemctl service
+    ...
+  handlers:
+  - name: Restarting Web Service
+    service:
+      name: httpd
+      state: restarted
+```
 
