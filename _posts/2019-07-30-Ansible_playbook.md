@@ -155,10 +155,11 @@ Ansible은 **Handler**라는 모듈을 통해 이러한 재시작 작업을 지�
       state: restarted
 ```
 
-### 4. 변수
+### 4. Variable
 재사용성을 높이려면 값들을 변수처리 하는 것이 좋다. 하드코딩은 당연 지양하자. <br>
 변수는 아래와같이 playbook 내에서 `vars: [key: value]` 와 같이 사용될 수 있다. <br>
-또한 {{ [var명] }}을 통해 플레이 내에서 변수를 참조해올 수도 있다.
+또한 {{ [var명] }}을 통해 플레이 내에서 변수를 참조해올 수도 있다.<br>
+*template 부분은 추후에 따로 다룰 예정이다. 
 ```yaml
 ---
 - hosts: control
@@ -187,3 +188,38 @@ Ansible은 **Handler**라는 모듈을 통해 이러한 재시작 작업을 지�
   - debug:
       var: db.port
 ```
+
+### 5. Fact
+플레이북을 작성하다보면, 원격 시스템마다 달라지는 변수를 설정할 필요가 있다.<br>
+이 때 **Fact**변수를 사용하면 된다. <br>
+`ansible-playbook` 명령어를 통해 플레이북을 실행했을 때에 최상단 작업으로 내가 지정한 task 가 아닌 
+```console
+[vagrant@controller ~]$ ansible-playbook jinja.yml
+
+PLAY [control] ************************************************************************
+
+TASK [Gathering Facts] ****************************************************************
+ok: [controller]
+```
+위와 같이 `TASK [Gathering Facts]`를 본 적이 있을것이다. <br>
+이는 앤서블 플레이북이 시작될 때 가장 초기에 되는 Setup 작업으로, 여기서 미리 fact 변수가 설정되고 이를 playbook에서 활용할 수 있다.<br>
+현재 설정된 fact 변수는 `ansible [host명] -m setup` 명령어로 확인할 수 있다.
+```console
+[vagrant@controller ~]$ ansible control -m setup
+controller | SUCCESS => {
+    "ansible_facts": {
+        "ansible_all_ipv4_addresses": [
+            "192.168.56.100",
+            "10.0.2.15"
+        ],
+        "ansible_all_ipv6_addresses": [
+            "fe80::a00:27ff:fe08:830d",
+            "fe80::5054:ff:fe8a:fee6"
+        ],
+        "ansible_apparmor": {
+            "status": "disabled"
+        },
+        ...
+```
+playbook 내에서는 `{{ ansible_all_ipv4_addresses }}`, `{{ ansible_apparmor.status }}` 등과 같이 사용할 수 있다. <br>
+참고로, playbook 내에서 fact변수를 사용하지 않을 때도 있는데, 팩트변수 수집은 노드가 많아지면 매우 오래걸리는 작업이므로 필요없다면 수집하지 않도록 할 수도 있다.<br>
