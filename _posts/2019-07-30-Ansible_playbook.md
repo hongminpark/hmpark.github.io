@@ -223,4 +223,13 @@ controller | SUCCESS => {
 ```
 playbook 내에서는 `{{ ansible_all_ipv4_addresses }}`, `{{ ansible_apparmor.status }}` 등과 같이 사용할 수 있다. <br>
 참고로, playbook 내에서 fact변수를 사용하지 않을 때도 있는데, 팩트변수 수집은 노드가 많아지면 매우 오래걸리는 작업이므로 필요없다면 수집하지 않도록 할 수도 있다.<br>
-fact 관련 설정을 변경하려면 Ansible 설정파일(ansible.cfg)에서 변경할 수 있다.
+fact 관련 설정을 변경하려면 Ansible 설정파일(ansible.cfg)에서 변경할 수 있다.<br><br>
+변수가 많아지면 아래와 같이 playbook에는 변수가 선언된 파일을 참조하고, 변수는 `vars_file: `를 통해 밖으로 따로 빼도록 하자.
+```yaml
+- hosts: control
+  vars_files:
+  - vars/sample.yml
+  tasks:
+  - debug:
+      var: message['txt']
+```
