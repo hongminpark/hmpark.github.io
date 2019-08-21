@@ -25,7 +25,7 @@ Spring 프로젝트를 만들다 보면, 초기생성할 때에 Spring Framework
 <br>
 
 pom.xml에서 쓰이는 간단한 아래 9가지 요소만 오늘은 보겠다.<br>
-pom.xml(sample)
+**pom.xml(sample)**
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
