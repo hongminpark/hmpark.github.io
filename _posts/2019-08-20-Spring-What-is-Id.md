@@ -1,4 +1,4 @@
---
+---
 layout: post
 title: "Spring Project: GroupId, ArtifactId, Version"
 author: "Hongmin Park"
