@@ -3,7 +3,7 @@ layout: post
 title: "Spring Project: GroupId, ArtifactId, Version"
 author: "Hongmin Park"
 ---
-Spring 프로젝트를 만들다 보면, 초기생성할 때에 Spring Framework이건 Spring Boot이건 아래와 같이 항상 'GroupId', 'ArtifactId, 'Version'을 물어본다.<br>
+Spring 프로젝트를 만들다 보면, 초기생성할 때에 Spring Framework이건 Spring Boot이건 아래와 같이 항상 'GroupId', 'ArtifactId, 'Version'을 물어본다.<br><br>
 ![무엇을 입력하는 것인고](https://user-images.githubusercontent.com/21957275/63358312-cbef7980-c3a5-11e9-8827-eab65523d4e7.png)<br><br>
 
 매번 남들따라.. 예제따라 아무거나 입력(com.example, com.hm, ...) 했었는데 이번에는 넘어가지 않고 찾아보기로 하였다.<br>
@@ -18,7 +18,7 @@ Spring 프로젝트를 만들다 보면, 초기생성할 때에 Spring Framework
 검색어를 수정해서 다시 찾아보자.<br>
 > What is maven groupid, artifactid, version?
 
-나는 공식다큐멘테이션을 좋아헤서 [메이븐 공식 다큐멘테이션](https://maven.apache.org/guides/getting-started) 여기서 정의를 찾아보았다.<br>
+나는 공식다큐멘테이션을 좋아해서 [메이븐 공식 다큐멘테이션](https://maven.apache.org/guides/getting-started) 여기서 정의를 찾아보았다.<br>
 다큐멘테이션에 따르면 groupid, artifactid, version은 Maven 프로젝트의 기본 단위인 POM(Project Object Model)를 이루는 요소 중 하나이다.<br>
 세 개만 찾아보려고 했는데, pom.xml 정의에 필요한 다른 요소들도 같이 나와있어 읽어보았다.<br>
 다큐멘테이션에 따르면 pom.xml은 메이븐 프로젝트에 필요한 모든 정보들이 다 들어있어서 이걸 이해하는게 굉장히 굉장히 중요하다고 되어있다.(~~그냥 버전정보인줄알았는데..~~)
