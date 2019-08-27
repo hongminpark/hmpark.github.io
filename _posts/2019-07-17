@@ -1,0 +1,87 @@
+---
+layout: post
+title: "top 명령어 w/ [실습과 그림으로 배우는 리눅스 구조]"
+author: "Hongmin Park"
+---
+![실습과 그림으로 배우는 리눅스 구조](http://www.hanbit.co.kr/data/books/B2453522793_l.jpg) 
+최근 [실습과 그림으로 배우는 리눅스 구조](http://www.hanbit.co.kr/store/books/look.php?p_code=B2453522793) 라는 책을 읽었다.<br>
+리눅스에서 명령어를 치다보면 종종 CPU, 메모리 등에 대해 내가 치는 명령어의 결과값이 어떤 의미를 갖는지 좀 더 구체적으로 알고싶을 때가 있었다. <br>
+어디선가 추천글을 보고 서점에 가서 대충 훑어보고 바로 집었다.~~(적당한 그림, 글, 코드)~~<br><br>
+책은 총 **8**챕터인데, CPU 관련 -> 메모리 관련 -> 저장장치 관련 순서로 구성되어있다. 챕터의 순서도 OS의 흐름을 이해하는 데에 한 몫 한다.<br>
+사실 책에서는 좀 더 방대하고 이것까지 알아야하나? 하는 부분도 있는데, 한번 죽 읽으면 확실히 도움이 된다. 본능적으로 컴퓨터란 것에 대해 조금 더 알게 된 느낌이다. <br><br>
+
+책 내용 전체를 요약하기는 어렵고, 내가 자주 쓰는 `top`, `free -m`, `df -h` 명령어 결과에서 이 책을 통해 더 이해한 부분들을 정리해보겠다.
+
+### 1. top
+`top` 은 시스템이 느리거나 비정상적이라고할 때에 많이 쳐보는 명령어이다.<br>
+현재 시스템에서 실시간으로 실행중인 process들이 자원을 점유하는 상황을 볼 수 있다.<br>
+상단부분에는 시스템 전체의 현황이, 개행 밑에는 각 프로세스들의 현황을 볼 수 있어서 단시간에 이 리눅스에서 일어나고 있는 일을 직감하기에 좋은 커맨드이다.<br>
+
+```console
+Processes: 314 total, 2 running, 312 sleeping, 1352 threads                   22:04:56
+Load Avg: 1.79, 2.32, 2.22  CPU usage: 5.2% user, 6.22% sys, 88.75% idle
+SharedLibs: 136M resident, 44M data, 13M linkedit.
+MemRegions: 83082 total, 1269M resident, 42M private, 369M shared.
+PhysMem: 4080M used (1193M wired), 16M unused.
+VM: 1391G vsize, 1317M framework vsize, 1626478(0) swapins, 1893513(0) swapouts.
+Networks: packets: 4410939/5522M in, 2399371/2658M out.
+Disks: 2222978/40G read, 1852633/30G written.
+
+PID   COMMAND      %CPU TIME     #TH   #WQ  #PORT MEM    PURG   CMPRS  PGRP PPID
+7505  top          4.4  00:01.47 1/1   0    25    3664K  0B     0B     7505 7452
+7452  zsh          0.0  00:00.61 1     0    21    2984K  0B     0B     7452 7451
+7451  login        0.0  00:01.01 2     1    31    988K   0B     0B     7451 7450
+7450  iTerm2       0.0  00:00.10 2     1    32    2864K  0B     0B     7450 5330
+7446  Google Chrom 0.0  00:00.17 11    1    103   13M    0B     8676K  1475 1475
+7445  Google Chrom 0.1  00:04.28 14    3    170   64M    0B     12M    1475 1475
+7426  Google Chrom 0.0  00:00.46 11    1    123   22M    0B     11M    1475 1475
+7424  Google Chrom 0.0  00:00.62 11    1    156   26M    0B     8272K  1475 1475
+7421  Google Chrom 0.1  00:05.12 12    1    172   65M    0B     16M    1475 1475
+7419  mdworker_sha 0.0  00:00.42 4     1    59    6392K  0B     2488K  7419 1
+7418  mdworker_sha 0.0  00:00.36 4     1    61    6420K  0B     1916K  7418 1
+7417  mdworker_sha 0.0  00:00.98 4     1    61    7564K  0B     488K   7417 1
+7416  mdworker_sha 0.0  00:00.67 4     1    61    8356K  0B     1136K  7416 1
+7413  mdworker_sha 0.0  00:00.09 3     1    59    5576K  0B     4484K  7413 1
+7412  mdworker_sha 0.0  00:00.08 3     1    56    5472K  0B     4260K  7412 1
+7411  mdworker_sha 0.0  00:00.08 3     1    56    4132K  0B     2516K  7411 1
+7410  mdworker_sha 0.0  00:00.09 3     1    56    4992K  0B     3532K  7410 1
+7405  mdworker_sha 0.0  00:00.13 3     1    56    3004K  0B     2964K  7405 1
+7401  AddressBookS 0.0  00:00.79 3     1    98    6808K  0B     6548K  7401 1
+7399  Google Chrom 0.4  00:25.24 16    1    265   211M-  0B     52M    1475 1475
+```
+위 아웃풋은 현재 내 맥(맥도 Unix 계열에서 나왔기 때문에 웬만한 Unix 명령어는 사용가능하다)에서 `top`을 날린 결과이다.<br>
+### CPU 관련
+상단 두 번째 줄에 `Load Avg: 1.79, 2.32, 2.22  CPU usage: 5.2% user, 6.22% sys, 88.75% idle` 를 확인할 수 있다.<br>
+이것의 의미를 뜯어보면, 우선 Load Avg 는 순서대로 1분, 5분, 15분 동안 시스템의 부하평균 값이다. 이 부하평균 값은 running/waiting 상태의 프로세스의 평균이라고 한다.<br>
+이것으로는 갑자기 시스템에 부하가 생긴 것인지, 지속적으로 생긴 것인지 아니면 생겼다가 없어졌는지 등을 수치로 확인할 수 있다.<br>
+간단하고 직관적인 만큼 엄청 크리티컬한 것을 알 수는 없다. <br>
+Load Avg는 `uptime` 명령어를 통해서도 볼 수 있다. <br><br>
+Load Avg 옆에는 `CPU usage: 5.2% user, 6.22% sys, 88.75% idle` 라고 해서 CPU 사용률을 모니터링할 수 있다. <br>
+크게 CPU 사용률을 1) user, 1) sys, 3) idle 세 부분으로 나누어 확인이 가능하다. 그리고 각 부분이 의미하는 바가 다르다.<br>
+#### user, sys
+우선 user 영역은 시스템에서 어플리케이션이 작동하면서 CPU를 쓰는 시간이다. <br>
+잠깐 유저영역에 대해서 짚고가면, OS는 하드웨어를 다루는 **커널영역**과 프로그램을 다루는 **유저영역** 으로 나뉠 수 있다. <br>
+프로그램은 종국에는 하드웨어를 조작해야 하는데(=커널영역에 접근), 프로그램(어플리케이션/소프트웨어)이 직접 하드웨어를 조작하지 않고(=커널영역에 직접 접근) `system call` 이라는 것을 통해 커널영역에 접근하게 된다. <br>
+쉽게 생각하면, '내가 하드웨어를 조작하는 걸 다 코딩하기 힘드니까 커널이 제공하는 **system call interface**를 사용하는구나' 라고 이해할 수 있다.<br>
+시스템 콜을 이해하고나면 **CPU usage**의 두 가지 부분인 `user`, `sys` 영역이 무엇을 의미하는지 알 수 있다.<br>
+`user`는 어플리케이션이 동작하면서 CPU를 사용하는 양이고, `sys`는 어플리케이션이 시스템 콜을 해서 커널영역에서 CPU를 사용하고 있는 것이다.<br>
+그리고 `sys` 는 대게의 경우 I/O를 유발시키는 disk 작업인 경우가 많다.(하드웨어를 조작하는 것인데.. 특히 많은 어플리케이션에서 disk 작업에 많은 시간을 쓴다. 물론 아닌 경우도 있고)<br>
+#### idle
+idle은 말 그대로 CPU가 놀고있는 시간이다. CPU가 노는것은 진짜 일이 없어서일 수도 있지만 때로는 무언가 다른걸 기다리고 있어서 일때도 있다.<br>
+idle이 높을 때에는 disk I/O wait 률이 높지는 않은지도 꼭 확인해보자. (mac의 top은 I/O wait 는 보여주지 않는데, 대부분의 Linux에서 top 명령어에 CPU wait률도 보여준다)
+<br><br>
+#### 왜 CPU Time은 s가 아니라 %인가?
+추가적으로 위 질문에 대해서도 정리해보겠다. 나는 예전부터 
+
+### Memory 관련
+`top` 명령어 출력에서 CPU 밑에는 
+```console
+SharedLibs: 136M resident, 44M data, 13M linkedit.
+MemRegions: 83082 total, 1269M resident, 42M private, 369M shared.
+PhysMem: 4080M used (1193M wired), 16M unused.
+VM: 1391G vsize, 1317M framework vsize, 1626478(0) swapins, 1893513(0) swapouts.
+```
+
+
+
+
