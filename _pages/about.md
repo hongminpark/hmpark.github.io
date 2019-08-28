@@ -13,6 +13,7 @@ permalink: /about/
 <br><br>
 ## Tech stack
 > Tech could be specific Programming Language, Development Tool, Computer Technology or else
+> Level is from :star: ~ :star::star::star::star::star:
 <!---
 > Level, which is defined by me.
 - :star:, Know/Understand what it is.
@@ -24,12 +25,12 @@ permalink: /about/
 <hr>
 | Tech | Level | Comment |
 |---|:---:|---:|
-| `WEB server` | :star::star::star::star: | Webtob, Nginx |
-| `WAS` | :star::star::star::star: | Jeus, Tomcat |
+| `WEB server` | :star::star::star: | Webtob, Nginx |
+| `WAS` | :star::star::star: | Jeus, Tomcat |
 | `Java` | :star::star: | Spring Framework, Spring Boot |
-| `Linux` | :star::star::star: | CentOS |
+| `Linux` | :star::star: | CentOS |
 | `Script` | :star::star: | Bash |
-| `Docker` | :star::star: |  |
-| `Kubernetes` | :star::star: |  |
+| `Docker` | :star: |  |
+| `Kubernetes` | :star: |  |
 | `Python` | :star::star: |  |
 | `SQL` | :star::star: | MySQL |
