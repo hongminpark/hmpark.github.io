@@ -6,7 +6,7 @@ permalink: /about/
 ---
 # 박홍민(Hongmin Park)
 <hr>
-![image](https://user-images.githubusercontent.com/21957275/63855581-b0eebc00-c9da-11e9-83f1-ea1f634a36e0.png){: border-radius="50%" width="50%"}
+![image](https://user-images.githubusercontent.com/21957275/63855581-b0eebc00-c9da-11e9-83f1-ea1f634a36e0.png){: border-radius="50%" width="50%" align="left"}
 > Contact [zhdals1026@gmail.com](zhdals1026@gmail.com)
 
 > Github [https://github.com/hongminpark](https://github.com/hongminpark)
