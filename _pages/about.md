@@ -17,7 +17,7 @@ permalink: /about/
 <hr>
 > Tech could be specific Programming Language, Development Tool, Computer Technology or else
 
-> Level is from \:star\: ~ `:star:`:star::star::star::star:
+> Level is from :star: ~ :star::star::star::star::star:
 
 <!---
 > Level, which is defined by me.
@@ -30,7 +30,7 @@ permalink: /about/
 
 | Tech | Level | Comment |
 |---|:---:|---|
-| `WEB server` | `:star::star::star:` | Webtob, Nginx |
+| `WEB server` | :star::star::star: | Webtob, Nginx |
 | `WAS` | :star::star::star: | Jeus, Tomcat |
 | `Java` | :star::star: | Spring Framework, Spring Boot |
 | `Linux` | :star::star: | CentOS |
