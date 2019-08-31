@@ -1,0 +1,85 @@
+---
+layout: post
+title: "Spring to SpringBoot, 토이프로젝트 갈아엎기 (1편)"
+author: "HongminPark"
+---
+
+작년 이맘때 쯤에 사내 프레임워크를 담당하시는 사수님께 한창 SpringFramework에 대하여 배웠었다. 그리고 배운 내용을 활용해서 처음으로 토이프로젝트를 만들었었다. <br>
+토이프로젝트로 만든 서비스는 내가 곧 투입될 WAS 담당팀에서 필요로 하는 서비스였다. <br>
+당시 팀에서 필요로 하는 서비스는 많았는데, SpringFramework로 내 개발 수준에서 만들만한 서비스인 '덤프 분석 웹 시스템'을 만들게 되었다.<br>
+좀 더 자세히 설명하면,<br><br>
+_WAS를 운영하다 보면 JVM에서 OutOfMemory는 매우 자주 발생한다. OOM의 원인 분석을 위해서는 heapdump 파일 분석이 매우 중요하다.<br>
+heapdump 파일은 대게 지정한 JVM 메모리 크기만큼 매우 크다. OOM 발생 시에 heap memory에 있는 객체가 모두 담겨있기 때문이다. 보통 1GB 이상, 매우 크면 4GB 이상 되기도 한다.<br>
+힙덤프 분석을 위해서는 [Eclipse MAT](https://www.eclipse.org/mat/), [IBM Heap Analyzer](https://www.ibm.com/developerworks/community/groups/service/html/communityview?lang=ja&communityUuid=4544bafe-c7a2-455f-9d43-eb866ea60091)(현재는 업그레이드를 위해 잠시 사용불가라고 합니다.) 등의 오픈소스 툴이 있다.<br>
+보통 이 두 툴을 사용하는데, 힙덤프 파일이 크고 이걸 분석하는데에 필요한 java 세팅 등 귀찮은 작업이 많다. 그리고 제일 번거로운 부분이, 힙덤프 분석 프로그램을 로컬 PC 에서 돌리면 CPU와 Memory를 굉장히 많이 먹어 로컬 PC는 잠시 작업불가능한 상태가 된다고 한다._<br><br>
+WAS 팀의 니즈는, 이런 힙덤프 분석 프로그램을 대신 돌려주는 플랫폼이 있으면 좋겠다는 것이었다.<br>
+내 PC에서 프로그램을 돌리는 대신 웹 등을 통해 덤프파일을 업로드하면 다른 서버에서 이 파일을 분석해서 보고서를 제공해주는 것이다.<br>
+그리하여 나는 작년에 입사 후 과제 겸 토이프로젝트로 '덤프 분석 웹 시스템'을 만들었다.<br>
+니즈에 맞게 웹서버로 압축된 덤프파일을 올리면 다른 서버에서 MAT 프로그램을 실행해 덤프파일을 분석한 후 보고서를 뿌려주는 것이었다.<br>
+나는 이 서비스가 어떻게 하면 잘 돌아가는지, 몇 MB의 용량이면 업로드 시간이 어느정도인지 등 내가 만든 시스템이기 때문에 당연히 알 수 밖에 없었다.<br>
+하지만, 예상과는 달리 팀원들은 이 서비스를 잘 사용하지 않았다.<br>
+'이렇게 이렇게 사용하시면 되요' 라고 알려드렸지만, 생각보다 서비스를 사용하는 유저는 극도의 편함이 아니라면.. 사용자가 아니라 이탈자가 되었다.(실제로 이 시스템을 만들고 완성도라는 것에 대하여 많은 생각을 하게되었다.)<br>
+서비스를 사용하지 않는 데에는 가장 결정적인 이유가 있었다. 바로 **'번거로움'** 이었다.<br>
+물론 덤프파일을 다른 서버에서 실행해서 내 PC의 자원을 점유하지 않는다는 것은 큰 장점이었지만, 그럼에도 불구하고 웹으로 덤프파일을 올리는데에 많은 시간이 소요되었고,<br>
+파일을 업로드하고 기다리느니 팀원들은 차라리 그냥 원래대로 본인의 PC에서 돌리는 것을 선호하게 되었다.<br>
+내가 만들고 나만 쓴다는 것이 참으로 속상했지만 어쩔 수 없었다. 아까워서 계속 '어떻게 하면 파일 업로드에 시간을 줄일 수 있지?' 고민하였다.<br>
+압축 풀고 해제하는데에 시간이 오래걸리나? 네트웤이 못따라주나? 등등의 생각을 하다 보니 차라리 그냥 파일 업로드에 소요되는 '단계'를 줄이는게 낫겠다 라는 생각을 하였다.<br>
+그래서 나는 '웹'을 버리기로 결심하였다. 웹 UI를 버리고 그냥 서버 to 서버로 `curl http://~~` 로 파일을 보내버리면 시간을 매우 단축시킬 수 있다. <br>
+팀원들이 물론 `curl` 요청 URL을 외울 리가 없기 때문에 아예 업무 스크립트용 서버에 아래처럼 `dump.sh`를 만들어서 팀원들에게 전달했다.<br>
+# dump.sh
+```bash
+echo -e "Please enter your 7 digit Employee Id. 
+ex) 1234567
+"
+read employeeId
+
+echo -e "
+Please enter your '@hyundai-autover.com' email address. 
+The report will be send to the email.
+(Only @hyundai-autoever.com available)
+ex) 1234567@hyundai-autoever.com
+"
+read email
+empEmail=`echo ${email} | cut -d'@' -f1`
+
+echo -e "
+** Only .gz/.zip file available.
+** If you didn't compressed the dump file, 
+** Please zip by the command line 'gzip [dumpfile]'
+Please enter the heap dumpfile name(including path). 
+ex) ./java_pid4466.hprof.gz, /dump/upload/noftp/java_pid4466.hprof.gz
+"
+read filename
+
+
+SERVER_NAME=`echo \`hostname\` | cut -d'.' -f1`
+
+echo -e "
+Please wait... 
+Sending dump file might require few minutes...
+"
+
+# Request analyze dump
+curl \
+-F "employeeId=${employeeId}" \
+-F "hostname=${SERVER_NAME}" \
+-F "empEmail=${empEmail}" \
+-F "empEmailDomain=hyundai-autoever.com" \
+-F "file=@${filename}" \
+http://xx.xx.xx.xx/dumpanalyzer/uploadDump.do
+
+# 200 OK 떨어지면
+echo -e "
+Successfully sent the request!
+The analysis might take few minutes depending on the dump file size.
+You'll get an email if it's successful.
+You can also find your request status at 
+http://xx.xx.xx.xx/dumpanalyzer/listDump.do
+"
+```
+
+이렇게 하니 팀원들이 쉘스크립트를 실행해서 사용하기 시작하였다.<br>
+이 방식으로 바꾸면서, 기존에 SpringFramework로 만든 서비스를 SpringBoot로 갈아엎고 좀더 RESTFul한 서비스로 만들고 싶어졌다.<br>
+미뤄왔는데, 이제 바꿔봐야겠다. 
+
+
