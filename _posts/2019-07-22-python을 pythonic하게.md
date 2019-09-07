@@ -148,6 +148,7 @@ with open('myfile.txt') as file:
 python에서는 heap 자료구조를 위해 `heapq`라는 모듈과 `PriorityQueue`라는 클래스를 제공한다.<br>
 모두 minheap으로 구현되어 있어 부모가 자식보다 작은 값을 가진다.<br>
 `heapq`와 `PriorityQueue`는 기능이 조금 다르니 적절하게 사용하도록 하자.(heapq가 연산이 더 빠름)<br>
+
 #### heapq
 ```python
 import heapq
@@ -167,4 +168,14 @@ pq = PriorityQueue()
 for val in my_list:
     pq.put_nowait(val) # 데이터삽입
     # pq.get_nowait()    # 가장작은 값 얻기
+```
+### Queue
+stack과 queue는 프로그래밍에서 아주 많이 쓰인다. stack은 그냥 리스트 `[]`를 구현해서 사용하면 되는데, Queue는 pop할 때 시간복잡도로 인해 모듈을 사용한다. <br>
+```python
+from collections import deque
+
+deque = deque([1, 2, 3])
+deque.append(4)
+deque.popleft()
+len(deque)
 ```
