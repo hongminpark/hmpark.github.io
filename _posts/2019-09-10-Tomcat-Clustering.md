@@ -3,6 +3,9 @@ layout: post
 title: "Tomcat Clustering - 1편"
 author: "Hongmin Park"
 ---
+![Tomcat](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Tomcat-logo.svg/200px-Tomcat-logo.svg.png)
+_요새우리를힘들게하는고양이_
+
 사내에서 WAS를 상용에서 오픈소스로 전환하려 하고 있다. 톰캣이 레퍼런스가 많다고 하지만, 
 실제로 설정하면서 일어나는 이슈들에 대해서 아직 알려지지 않거나 찾기 힘들거나 그냥 나 스스로 정리가 안 된 부분이 아주 많다.
 특히 추후에 이슈가 될 것 같은 부분은 **클러스터링, DB커넥션**과 같은 부분들이다. 
