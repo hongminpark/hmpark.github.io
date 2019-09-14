@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Tomcat Clustering - 1편"
+title: "Tomcat Clustering - 2편"
 author: "Hongmin Park"
 ---
-1편에서는 간단히 클러스터링을 구현하는 방법을 알아보았다. 이번 편에서는 좀 더 자세히 각 설정 값들이 의미하는 바를 알아볼 것이다.
+[Tomcat Clustering - 1편](https://hongminpark.github.io/2019-09-10/Tomcat-Clustering)에서는 간단히 클러스터링을 구현하는 방법을 알아보았다. 이번 편에서는 좀 더 자세히 각 설정 값들이 의미하는 바를 알아볼 것이다.
 모든 설명은 [Tomcat 8.0 Documentation](https://tomcat.apache.org/tomcat-8.0-doc/cluster-howto.html)을
 기준으로 ~~(거의 번역에 가깝게..)~~ 작성하였다.
 <br><br>
