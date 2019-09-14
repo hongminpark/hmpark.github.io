@@ -98,7 +98,7 @@ Channel element는 membership 간 통신을 구현한다.
                   dropTime="3000"/>
 ```
 [Membership](https://tomcat.apache.org/tomcat-8.0-doc/config/cluster-membership.html)은 기본적으로 [multicast](https://ko.wikipedia.org/wiki/%EB%A9%80%ED%8B%B0%EC%BA%90%EC%8A%A4%ED%8A%B8)를 통해 구현된는데, 
-`StaticMembershipIntercepter`를 통해 multicasting이 아닌 static membership로도 정의할 수 있다. 
+`StaticMembershipIntercepter`를 통해 multicasting이 아닌 static membership로도 정의할 수 있다. Static member는 해당 노드의 IP, 통신할Port를 직접 명시하여 작성한다.
 (현재 우리는 어떤 이유에서인지 multicast 통신이 되지 않아서 StaticMembership을 사용하고 있다.)
 <br><br>
 `Membership`은 TCP 주소/포트로 broadcasts를 통해 노드 간 연결한다. 이 때 broadcast 되는 주소는 Receiver.address 이다.
@@ -141,4 +141,23 @@ Interceptor는 순서가 있어 위와 같이 정의된 순서에 따라서 chan
 ```
 톰캣 클러스터는 디폴트로 [farmed deployment](https://tomcat.apache.org/tomcat-8.5-doc/config/cluster-deployer.html)를 지원한다. 클러스터에 속한 모든 노드에 앱을 디플로이해주는 속성이다.
 실제로 배포를 이 방식으로 하지는 않을 것 같아서 필요하지 않는 경우에는 삭제해도 될 것 같다.
+
+## 클러스터 작동 순서
+마지막으로 Tomcat A, Tomcat B가 서로 클러스터링 되어있을 때에 어떤 방식으로 세션백업이 동작하는지 그 순서에 대해 알아보자.
+1. TomcatA 기동
+일반 기동과 동일, ClusterManager인 DeltaManaer를 생성한다. cluster class는  membership service와 replication service 를 기동시킨다.
+2. TomcatB 기동
+클러스터에 속한 서버에 session state를 요청한다. HTTP 요청을 listen하기 전에(**<=> 리슨 포트가 뜨기 이전**) 세션을 백업받는다. 이 때 TomcatA가 응답이 없을 수도 있으므로 타임아웃은 60s 이다.
+3. TomcatA로 요청을 받고, 세션 S1이 생성됨.
+request 요청을 받으면 ReplicationValve가 요청을 intercept해서 response를 돌려주기 이전에 복제 작업을 한다. serialized 된 데이터가 클러스터에 속한 다른 노드의 **OS TCP logic에 도착하면** 그 때 톰캣이 response를 돌려준다.
+4. TomcatA가 죽음
+TomcatB는 TomcatA가 죽으면 notification을 받아 membership list에서 제거한다. 로드밸런서가 TomcatA로부터의 요청을 TomcatB로 리다이렉트 시키고, TomcatB가 세션 S1 요청에 대한 응답을 돌려준다.
+5. TomcatA 살아남
+다시 TomcatA가 살아나면, TomcatB에게 현재 세션 상태를 업데이트 받고 HTTP/mod_jk 포트를 오픈한다.
+6. 세션 S1 만료
+세션 S1이 클라이언트 요청에 의해 만료되면 invalidate call이 intercept해서 invalidated session 에 큐잉된다. TomcatA에서 S1이 invalidate되면, TomcatB로 expire메시지를 보내고 TomcatB에서도 invalidate한다.
+<br><br>
+이렇게 클러스터링을 위한 각 설정의 의미와 클러스터링 동작 순서에 대해 알아보았다. 세션이 다른 노드로 백업된 이후에 응답을 돌려준다고 하는데, 이 부분도 TCP 옵션설정 중 비동기방식으로 설정을 하면 기다리는 시간을 줄일 수 있지 않을까 싶다. 사실 설명은 위와 같지만 실제 운영중 일어나는 이슈를 경험해야 어떤 부분이 문제가 되고 어떻게 해결해야하는지 체감할 수 있을 것 같다.   
+
+
 
