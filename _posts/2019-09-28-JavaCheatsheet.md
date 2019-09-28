@@ -31,8 +31,10 @@ Arrays.sort(a);
 python에서 많이 사용하던 `lambda, list comprehension, map, reduce, filter` 와 같은 함수와 기능들을 
 java에서도 비슷하게 구현할 수 있다. java8에서부터 추가된 `Stream API`를 사용하자. 
 자세한 내용은 [이 글](https://www.geeksforgeeks.org/stream-in-java/)에 센스있게 정리되어 있다.
+
 ```Java
 // map
+// ArrayList<Integer> number = new ArrayList<>();
 List<Integer> number = Arrays.asList(2,3,4,5);
 List<Integer> square = number.stream().map(x -> x*x).collect(Collectors.toList());
 
@@ -40,3 +42,16 @@ List<Integer> square = number.stream().map(x -> x*x).collect(Collectors.toList()
 List<String> names = Arrays.asList("Reflection","Collection","Stream");
 List<String> filtered = names.stream().filter(x -> x.startswith("R")).collect(Collectors.toList());
 ```
+
+### HashSet
+python의 `set` 처럼 java에는 `HashSet, TreeSet, LinkedHashSet`이 있는데 셋 중 `HashSet`이 성능이 가장 좋다고 한다.
+```java
+// HashSet<String> hs = new HashSet<>();
+Set<String> hs = new HashSet<>();
+hs.add(item);
+hs.contains(item);
+hs.remove(item);
+```
+
+
+### Permutations, Combinations
