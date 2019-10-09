@@ -72,10 +72,8 @@ public class BasicSampleServiceImpl extends HService implements BasicSampleServi
 }
 {% endhighlight %}
 - 단, 주의할 점은 **@Transactional**을 사용할 Service 레이어 또는 class가 Spring bean으로 등록되어 있어야 한다.<br>
-- 또한, xml 설정파일에 
-{% highlight java %}<tx:annotaion-driven transaction-manager="txManager">{% endhighlight %}
-를 기입하여야 한다. <br>
-- 마지막으로, 메소드가 'public' method 여야 한다. (private, protected, package-visible method 의 경우에는 AspectJ를 고려한다.) 
+- 또한, xml 설정파일에 `<tx:annotaion-driven transaction-manager="txManager">`를 기입하여야 한다. <br>
+- 마지막으로, 메소드가 `public` method 여야 한다. (private, protected, package-visible method 의 경우에는 AspectJ를 고려한다.) 
 <br>이는 모두 Spring Transaction이 **AOP** 를 기반으로 작동하며, Spring AOP는 기본적으로 **Proxy** 기반이기 때문이다.
 <br><br>
 
