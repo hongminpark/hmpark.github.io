@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ansible Playbook 작성하기"
+title: "[Ansible] Playbook 작성"
 author: "Hongmin Park"
 ---
 
