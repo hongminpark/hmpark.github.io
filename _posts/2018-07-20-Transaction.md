@@ -86,8 +86,8 @@ AOP는 Datasource가 여러 개 있을 경우에, 한 번에 Connection open하�
 한 트랜잭션에서 이기종 DB 즉, 물리적으로 다른 DB를 참조하고 있을 때, 이기종 DB간 커밋할 일이 있을 때를 2 Phase Commit이라고 한다. 예를 들어) DB1 커밋 -> DB2 조희 -> DB1 커밋 에는 transaction 구현이 복잡해 진다.
 
 #### 3) transaction 장애발생 대표 유형<br>
-####3-1) Exception처리 (try/catch문)<br>
-트랜잭션에 roll-back 설정을 할 수 있는데 default는 `RuntimeException`이다. 또한, 스프링 트랜잭션은 Checked Exception의 경우는 롤백하지 않는다. 이 말인 즉슨, 내가 **비즈니스 레이어 내부에서 `Custom Exception`을 통해 에러처리**를 해놓았다면, 이로 인해 **잘못된 Transaction**이지만 Exception 처리 구현 로직으로 인해 프로그램 전체적으로는 '정상'상태로 감지되고 이는 **commit**된다. <br>
+#### 3-1) Exception처리 (try/catch문)<br>
+트랜잭션에 roll-back 설정을 할 수 있는데 default는 `RuntimeException`이다. 또한, 스프링 트랜잭션은 Checked Exception의 경우는 롤백하지 않는다. 이 말인 즉슨, 내가 **비즈니스 레이어 내부에서 에러처리**를 해놓았다면, 이로 인해 **잘못된 Transaction**이지만 Exception 처리 구현 로직으로 인해 프로그램 전체적으로는 '정상'상태로 감지되고 이는 **commit**된다. <br>
 앞서 말했던 것처럼 **transaction의 경계는 프레젠테이션 레이어와 비즈니스 레이어 사이**. 즉, Service 클래스에서 메소드의 실행과 종료가 transaction의 경계이다. 비즈니스레이어(Service 클래스)에서 Exception처리를 통해 메소드들이 정상 종료되면 transaction은 정상적으로 commit된다.
 예외를 잡기 위해 예외처리를 하였는데 transaction이 정상 commit 되는 상황인 것이다. <br>
 -> 이러한 경우에는 try/catch를 빼거나, 비즈니스 레이어(Service)가 아닌 프레젠테이션 레이어(Controller) 에서 예외 처리를 해야 한다.<br><br>
