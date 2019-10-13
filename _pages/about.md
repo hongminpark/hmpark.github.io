@@ -20,25 +20,22 @@ permalink: /about/
 <hr>
 > Tech could be specific Programming Language, Development Tool, Computer Technology or else
 
-> Level is from :star: ~ :star::star::star::star::star:
+> (레벨 출처: [백엔드 개발자를 꿈꾸는 학생개발자에게](https://d2.naver.com/news/3435170))<br>
+:star: 이미 쓰고 있는 개발도구의 사용법을 알려주거나 가이드 문서를 줘도 잘 못 씀
+:star::star: 알려주거나 같은 팀에서 만든 가이드 문서에 있는 만큼만 쓸 수 있음
+:star::star::star: 개발도구의 공식 레퍼런스를 보고 사용법을 스스로 익힐 수 있음, 자신이 경험한 사용법을 문서화해서 팀 내에 전파할 수 있음
+:star::star::star::star: 여러 개발도구를 비교 분석해서 상황에 적합한 도구를 선택할 수 있음, 공식 레퍼런스 문서에서 부족한 부분을 수정해서 기여할 수 있음
+:star::star::star::star::star: 개발도구의 문제를 소스 코드를 수정해서 Fork/패치해서 사용할 수 있음
 
-<!---
-> Level, which is defined by me.
-- :star:, Know/Understand what it is.
-- :star::star:, Can apply it to make/enable sth.
-- :star::star::star:, Can apply it to make/enable sth with deeper understanding.
-- :star::star::star::star:, Can also do trouble shooting
-- :star::star::star::star::star:, 
---->
 
 | Tech | Level | Comment |
 |---|:---:|---|
 | `WEB server` | :star::star::star: | Webtob, Nginx |
 | `WAS` | :star::star::star: | Jeus, Tomcat |
-| `Java` | :star::star: | Spring Framework, Spring Boot |
-| `Linux` | :star::star: | CentOS |
+| `Java` | :star::star::star: | Spring Framework, Spring Boot |
+| `Linux` | :star::star::star: | CentOS |
 | `Script` | :star::star: | Bash |
 | `Docker` | :star: |  |
 | `Kubernetes` | :star: |  |
-| `Python` | :star::star: |  |
+| `Python` | :star::star::star: |  |
 | `SQL` | :star::star: | MySQL |
