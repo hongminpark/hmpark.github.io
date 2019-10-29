@@ -75,7 +75,7 @@ Channel.DEFAULT = Channel.SND_RX_SEQ (1) |
                   Channel.MBR_RX_SEQ (4) |
                   Channel.MBR_TX_SEQ (8);
 ```
-값들 중의 값인데, 현재 3으로 설정한 겅슨 SND_RX_SEQ, SND_RX_SEQ를 설정하겠다는 의미이다. 
+값들 중의 값인데, 현재 3으로 설정한  SND_RX_SEQ, SND_RX_SEQ를 설정하겠다는 의미이다. 
 ```
 SND_RX_SEQ - starts or stops the data receiver. Start means opening a server socket in case of a TCP implementation
 SND_TX_SEQ - starts or stops the data sender. This should not open any sockets, as sockets are opened on demand when a message is being sent
