@@ -22,8 +22,8 @@ author: "Hongmin Park"
 	}
 ```
 #### 결과로그
-2020-04-13 **15:20:54.779** INFO 18675 --- [ulingExecutor-1] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}
-2020-04-13 **15:21:54.785** INFO 18675 --- [ulingExecutor-2] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}
+2020-04-13 **15:20:54.779** INFO 18675 --- [ulingExecutor-1] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}<br>
+2020-04-13 **15:21:54.785** INFO 18675 --- [ulingExecutor-2] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}<br>
 ### [CASE2] fixedDelay
 이전 작업이 종료되면 delay만큼 지난 후 다음 작업 실행
 
@@ -37,8 +37,8 @@ author: "Hongmin Park"
 	}
 ```
 #### 결과로그
-2020-04-13 **15:27:23.960** INFO 19039 --- [ulingExecutor-1] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}
-2020-04-13 **15:28:53.971** INFO 19039 --- [ulingExecutor-2] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}
+2020-04-13 **15:27:23.960** INFO 19039 --- [ulingExecutor-1] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}<br>
+2020-04-13 **15:28:53.971** INFO 19039 --- [ulingExecutor-2] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}<br>
 
 ### [CASE3] cron
 이전 작업이 설정된 cron 시간까지 종료되지 않으면 작업을 실행하지 않고 다음 cron 시간을 기다림.
@@ -52,7 +52,7 @@ author: "Hongmin Park"
 	}
 ```
 #### 결과로그
-2020-04-13 **15:24:40.018** INFO 18904 --- [ulingExecutor-1] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}
-2020-04-13 **15:25:50.001** INFO 18904 --- [ulingExecutor-3] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}
-
+2020-04-13 **15:24:40.018** INFO 18904 --- [ulingExecutor-1] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}<br>
+2020-04-13 **15:25:50.001** INFO 18904 --- [ulingExecutor-3] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}<br>
+<br>
 *참고 : [ScheduledExecutorService](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true)
