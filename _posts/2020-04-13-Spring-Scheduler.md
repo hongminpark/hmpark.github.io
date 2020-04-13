@@ -11,7 +11,7 @@ author: "Hongmin Park"
 
 ## 스케쥴러 동작방식
 ### [CASE1] fixedRate
-- 작업이 rate보다 오래걸리면 다음 작업은 queing되고 현 작업이 종료된 후 바로 실행됨.
+작업이 rate보다 오래걸리면 다음 작업은 queing되고 현 작업이 종료된 후 바로 실행됨.
 #### 테스트코드
 ```java
   @SneakyThrows
@@ -25,7 +25,8 @@ author: "Hongmin Park"
 2020-04-13 **15:20:54.779** INFO 18675 --- [ulingExecutor-1] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}
 2020-04-13 **15:21:54.785** INFO 18675 --- [ulingExecutor-2] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}
 ### [CASE2] fixedDelay
-- 이전 작업이 종료되면 delay만큼 지난 후 다음 작업 실행
+이전 작업이 종료되면 delay만큼 지난 후 다음 작업 실행
+
 #### 테스트코드
 ```java
   @SneakyThrows
@@ -38,8 +39,9 @@ author: "Hongmin Park"
 #### 결과로그
 2020-04-13 **15:27:23.960** INFO 19039 --- [ulingExecutor-1] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}
 2020-04-13 **15:28:53.971** INFO 19039 --- [ulingExecutor-2] c.n.a.p.s.service.Cache : CacheStats : CacheStats{hitCount=0, missCount=0, loadSuccessCount=0, loadFailureCount=0, totalLoadTime=0, evictionCount=0, evictionWeight=0}
+
 ### [CASE3] cron
-- 이전 작업이 설정된 cron 시간까지 종료되지 않으면 작업을 실행하지 않고 다음 cron 시간을 기다림.
+이전 작업이 설정된 cron 시간까지 종료되지 않으면 작업을 실행하지 않고 다음 cron 시간을 기다림.
 #### 테스트코드
 ```java
   @SneakyThrows
