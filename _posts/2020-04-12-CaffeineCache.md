@@ -49,10 +49,11 @@ author: "Hongmin Park"
     doSomething(cache.get(key));
 		cache.getAll(getKeyLists());
 ```
-위와 같이 `LoadingCache`를 활용하여 비동기 방식으로 캐시를 로드할 수 있다. `refreshAfterWrite`을 통해 30분 뒤 갱신하도록 하고, build 내부에 load함수를 넘겨주면서 key에 대한 value를 동적으로 load할 수 있도록 하였다.
+위와 같이 `LoadingCache`를 활용하여 비동기 방식으로 캐시를 로드할 수 있다. `refreshAfterWrite`을 통해 30분 뒤 갱신하도록 하고, build 내부에 load함수를 넘겨주면서 key에 대한 value를 동적으로 load할 수 있도록 하였다. null체크를 할 필요가 없어졌다.
 
 ### 주의사항
 > Refresh operations are executed asynchronously using an Executor. The default executor is ForkJoinPool.commonPool() and can be overridden via Caffeine.executor(Executor)
 - Refresh는 별도의 스레드를 통해 비동기로 수행된다. 여기서 나는 특정 주기로 비동기 스레드가 refresh 작업을 수행한다고 생각했는데, 그건 아니다.
+
 > In contrast to expireAfterWrite, refreshAfterWrite will make a key eligible for refresh after the specified duration, but a refresh will only be actually initiated when the entry is queried.
 - refreshAfterWrite에 명시된 주기 이후에 key가 호출되면, 해당 key에 대한 old value가 리턴되고 갱신작업은 비동기 스레드로 진행된다.
