@@ -2,6 +2,7 @@
 layout: post
 title: "[Spring.4-2] Business Layer - Transaction"
 author: "Hongmin Park"
+tags: spring
 ---
 
 ![Business Layer](https://mail.google.com/mail/u/0?ui=2&ik=e26376f5e4&view=fimg&th=16b690ff6a49d2e9&attid=0.12&disp=emb&attbid=ANGjdJ9BuqnXHFctMzgwFEuBvjZP16IXM-IP-8JM96NirSOfoNPPvSJ7_B3biXB3FWN_gmagntVZiV9HWzwsy-7sI27j06CTYu2xN2aBytUbz-8DsitZ-ghXAGD2uF8&sz=s0-l75-ft&ats=1560951710471&rm=16b690ff6a49d2e9&zw&atsh=1 "Business Layer")

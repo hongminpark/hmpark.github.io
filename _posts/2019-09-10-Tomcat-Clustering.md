@@ -2,6 +2,7 @@
 layout: post
 title: "Tomcat Clustering - 1편"
 author: "Hongmin Park"
+tags: tomcat
 ---
 ![Tomcat](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Tomcat-logo.svg/200px-Tomcat-logo.svg.png)
 _요새우리를힘들게하는고양이_

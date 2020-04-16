@@ -2,6 +2,7 @@
 layout: post
 title: "[Ansible] 설정파일"
 author: "Hongmin Park"
+tags: ansible
 ---
 
 ### Ansible 설정파일 - ansible.cfg

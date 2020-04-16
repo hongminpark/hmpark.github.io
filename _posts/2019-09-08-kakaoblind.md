@@ -2,6 +2,7 @@
 layout: post
 title: "카카오블라인드 1차 코테 후기"
 author: "Hongmin Park"
+tags: 리뷰
 ---
 2019년 9월 7일 토요일 오후 2시부터 저녁 7시까지 5시간동안 카카오블라인드 코딩테스트 1차를 봤다. 완벽히 조져졌다.<br>
 ![조져졌다.완벽히..](https://img.theqoo.net/img/HQiJC.jpg)

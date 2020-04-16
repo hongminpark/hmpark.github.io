@@ -2,6 +2,7 @@
 layout: post
 title: "[Ansible] Playbook 작성"
 author: "Hongmin Park"
+tags: ansible
 ---
 
 지금까지는 커맨드라인으로 ansible 명령어를 통해 핑때리기, 호스트에 작업하기 등을 해보았는데,<br>

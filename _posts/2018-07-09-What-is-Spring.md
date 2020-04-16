@@ -2,6 +2,7 @@
 layout: post
 title: "[Spring.1] What is Spring Framework?"
 author: "Hongmin Park"
+tags: spring
 ---
 
 스프링 프레임워크는 Java 기반 어플리케이션 프레임워크이다.

@@ -2,6 +2,7 @@
 layout: post
 title: "CaffeineCache를 잘 활용한 코드 개선"
 author: "Hongmin Park"
+tags: java cache caffeinecache guavacache
 ---
 팀 내에서 JVM에 내부에 캐시용도로 [`CaffeineCache`](https://github.com/ben-manes/caffeine/wiki)를 사용하고 있는데, 이를 개선하는 작업을 과제로 받았다.
 #### 문제

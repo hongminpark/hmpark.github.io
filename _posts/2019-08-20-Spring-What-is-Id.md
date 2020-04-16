@@ -2,6 +2,7 @@
 layout: post
 title: "Spring Project: GroupId, ArtifactId, Version"
 author: "Hongmin Park"
+tags: spring
 ---
 Spring 프로젝트를 만들다 보면, 초기생성할 때에 Spring Framework이건 Spring Boot이건 아래와 같이 항상 'GroupId', 'ArtifactId, 'Version'을 물어본다.<br><br>
 ![무엇을 입력하는 것인고](https://user-images.githubusercontent.com/21957275/63358312-cbef7980-c3a5-11e9-8827-eab65523d4e7.png)<br><br>

@@ -2,6 +2,7 @@
 layout: post
 title: "Git cheatsheet"
 author: "Hongmin Park"
+tags: git
 ---
 사내 테크쉐어 강의 중 아주 매우 유용한 Git Cheatsheet 강의를 정리해보았다. 요긴히 사용하도록 하자.
 

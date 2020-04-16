@@ -2,6 +2,7 @@
 layout: post
 title: "Scheduler - fixedRate, fixedDelay, cron 동작방식"
 author: "Hongmin Park"
+tags: java spring scheduler
 ---
 사내 코드에서 스케쥴러를 이용한 작업 처리가 많이 있다. 메소드에 `@Scheduled` 어노테이션을 달아서 많이 사용하는데, 이 때 **fixedRate, fixedDelay, cron** 세 가지 동작방식을 지정할 수 있다.
 직관적으로 생각했을 때에는 fixedDelay의 경우 이전 작업이 정상적으로 끝나야 다음 작업이 진행될 것 같은데, fixedRate과 cron은 어떻게 동작할까 ?<br>

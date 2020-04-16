@@ -2,6 +2,7 @@
 layout: post
 title: "Spring to SpringBoot, 토이프로젝트 갈아엎기 (1편)"
 author: "HongminPark"
+tags: java spring
 ---
 
 작년 이맘때 쯤에 사내 프레임워크를 담당하시는 사수님께 한창 SpringFramework에 대하여 배웠었다. 그리고 배운 내용을 활용해서 처음으로 토이프로젝트를 만들었었다. <br>

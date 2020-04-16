@@ -2,6 +2,7 @@
 layout: post
 title: "[Ansible] Role 을 활용해보자"
 author: "Hongmin Park"
+tags: ansible
 ---
 [Ansible Role](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html)
 변수나 태스크, 핸들러 등의 정의를 구조적으로 할 수 있도록 하는 Ansible의 파일/디렉토리 구조라고 생각하면 된다. 

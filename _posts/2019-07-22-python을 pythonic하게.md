@@ -2,6 +2,7 @@
 layout: post
 title: "python을 pythonic하게"
 author: "Hongmin Park"
+tags: python algorithm
 ---
 
 *이 글은 [programmers.co.kr의 파이썬을 파이썬답게](https://programmers.co.kr/learn/courses/4008) 무료 강의를 정리한 글입니다.*

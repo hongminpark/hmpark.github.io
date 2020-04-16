@@ -2,6 +2,7 @@
 layout: post
 title: "Java Cheat Sheet for Algorithms"
 author: "Hongmin Park"
+tags: java
 ---
 
 파이썬으로 코딩테스트를 준비하고 있다. 그런데 모 기업에서 코딩테스트 언어로 `C, C++, Java`만 지원하겠다는 

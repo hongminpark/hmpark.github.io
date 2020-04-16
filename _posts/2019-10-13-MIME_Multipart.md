@@ -2,6 +2,7 @@
 layout: post
 title: "MIME과 Multipart"
 author: "Hongmin Park"
+tags: http mime multipart
 ---
 
 웹을 운영하는 사람이면 MIME type에 대해 한 번 쯤은 들어봤을 수 있다. 단순히 확장자라고 생각했는데, 메일을 발송하는 코드를 작성하다가 MIME Message라는 용어와 Multipart라는 게 혼용되어 사용되는 것을 보았다. Multipart라는 것은 파일을 보낼 때 사용되는 어떤 것 이라고만 알고있었는데, 이 모든게 순간 혼란스러워졌다. MIME과 Multipart라는 것 각각의 개념에 대한 이해가 부족했고, 그래서 이 두개가 왜 관계가 있는지 몰랐다. 아래는 내가 메일을 보낼 때 사용했던 코드의 일부이다.(일부 변수들이 제거된 코드이므로 흐름만 봐야한다.) 각 로직의 설명을 주석으로 달아놓았는데, MIME/Multipart에 대해 이해한 후 코드를 읽어보면 왜 이런 로직이 되었는지 이해할 수 있다. 당장 이해가 되지 않는다면, 이어서 나오는 정리부분을 읽어보면 된다. 내용은 [Mozilla Developer](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)를 참고하여 이해/정리해보았다.<br>
