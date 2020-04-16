@@ -14,3 +14,7 @@ permalink: /tags/
   {% capture tagname %}{{ tagitems[1] }}{% endcapture %}
   <a href="/tag/{{ tagname }}"><code class="highligher-rouge"><nobr>{{ tagname }}</nobr></code></a>
 {% endfor %}
+
+  {% for tagname in site.tags %}
+    <a href="/tag/{{ tagname }}"><code class="highligher-rouge"><nobr>{{ tagname }}</nobr></code></a>
+  {% endfor %}
