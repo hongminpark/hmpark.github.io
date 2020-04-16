@@ -16,12 +16,13 @@ comments: true
       <br>
       <span>on&nbsp;</span><time datetime="{{ page.date }}">{{ page.date | date: "%B %d, %Y" }}</time>
     {% endif %}
-    <span>[
+    <br>
+    <span>
       {% for tag in page.tags %}
         {% capture tag_name %}{{ tag }}{% endcapture %}
         <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
       {% endfor %}
-    ]</span>
+    </span>
   </div>
 
   <h1 class="post-title">{{ page.title }}</h1>
