@@ -1,5 +1,6 @@
 ---
 layout: default
+permalink: /tags/
 ---
 <h2>Tags</h2>
 {% capture temptags %}
